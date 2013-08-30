@@ -47,7 +47,7 @@ bool HelloWorld::init()
     Menu* menu = Menu::create(closeItem, NULL);
     menu->setPosition(Point::ZERO);
     this->addChild(menu, 1);
-
+	//¡÷ºÆ
     /////////////////////////////
     // 3. add your codes below...
 
