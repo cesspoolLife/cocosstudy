@@ -1,4 +1,5 @@
 #include "HelloWorldScene.h"
+#include "Character.h"
 
 USING_NS_CC;
 
@@ -75,7 +76,7 @@ bool HelloWorld::init()
 
 	TMXTiledMap* tmxMap = TMXTiledMap::create("Tile/tdMap.tmx");
 
-	this->addChild(tmxMap,1,1);
+	this->addChild(tmxMap,0,1);
 
     return true;
 }
