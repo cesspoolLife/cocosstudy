@@ -79,6 +79,8 @@ if [ -f "$file" ]; then
 fi
 done
 
+chmod 777 -R "$APP_ANDROID_ROOT"/assets
+
 # run ndk-build
 if [[ "$buildexternalsfromsource" ]]; then
     echo "Building external dependencies from source"
