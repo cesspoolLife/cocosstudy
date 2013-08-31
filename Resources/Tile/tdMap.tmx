@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="40" height="30" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="tileset_1" tilewidth="16" tileheight="16">
+  <image source="tileset_1.png" width="256" height="336"/>
+ </tileset>
+ <layer name="Terrain" width="40" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztw0ENAAAMA6HTUP9iZ2MPSFg1VVVVVX36AO3ZVGE=
+  </data>
+ </layer>
+ <layer name="Building" width="40" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztVjsOwjAMTQUs0InPApwAurKUG5Rb9P4bsONKRLUsOx8naRl40htoEvvRPNvtzYg+MyW41lL2zok1cDMBa6W+I/ABvBZkBzwn6NOeLZnD+k+rz1cLGCnvIJc+SWvvyYH9z3mUni1RLy3wLqwN+U9fcv+B6itRL50jpqRP8p/Wy5If8f1y6xektYnQF+N/H1z6JGjen2am5dIn6dXOWnxeq487O/yWaq1E/Upzj+qzwH4tXb9ST8HA+nJ/Z0l3xOWm4Pxm421/QB+3x8ZLnSF1AX00nnaGdEK83ProM81d5r7fmHM54oXqo73J1a98vUvSx8VrA/Rx/c71vUF9FqLP1VMbEw+tL0LPpmIufU/gC/hW5g7Zo53ft8qYBXAJXFX+3L4ckre183vQtwPugQePvtAcGm//MQ0+9u1rtA==
+  </data>
+ </layer>
+ <objectgroup name="Objects" width="40" height="30">
+  <object name="SpawnPoint" x="576" y="128"/>
+  <object name="wp1" x="112" y="128"/>
+  <object name="wp2" x="112" y="224"/>
+  <object name="wp3" x="544" y="224"/>
+  <object name="wp4" x="544" y="352"/>
+  <object name="wp5" x="448" y="352"/>
+  <object name="wp6" x="448" y="48"/>
+  <object name="wp7" x="48" y="48"/>
+  <object name="wp8" x="48" y="352"/>
+  <object name="wp9" x="272" y="352"/>
+  <object name="wp10" x="272" y="432"/>
+  <object name="wp11" x="128" y="432"/>
+  <object name="wp12" x="128" y="288"/>
+  <object name="wp13" x="368" y="288"/>
+  <object name="wp14" x="368" y="416"/>
+  <object name="wp15" x="592" y="416"/>
+ </objectgroup>
+</map>
