@@ -26,11 +26,11 @@ bool HelloWorld::init()
     {
         return false;
     }
-    /*
+    
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Point origin = Director::getInstance()->getVisibleOrigin();
 	
-    /////////////////////////////
+/*    /////////////////////////////
     // 2. add a menu item with "X" image, which is clicked to quit the program
     //    you may modify it.
 
@@ -78,8 +78,16 @@ bool HelloWorld::init()
     */
 
 	TMXTiledMap* tmxMap = TMXTiledMap::create("Tile/tdMap.tmx");
+	Size mSize = tmxMap->getMapSize();
+	Size tSize = tmxMap->getTileSize();
+	float wScale = visibleSize.width/(mSize.width*tSize.width);
+	float hScale = visibleSize.height/(mSize.height*tSize.height);
+	tmxMap->setScaleX(wScale);
+	tmxMap->setScaleY(hScale);
 
 	this->addChild(tmxMap,1,1);
+
+	
 
     return true;
 }
