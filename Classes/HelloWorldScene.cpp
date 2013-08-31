@@ -22,14 +22,14 @@ bool HelloWorld::init()
 {
     //////////////////////////////
     // 1. super init first
-    if ( !Layer::init() )
+    if ( !LayerColor::initWithColor(ccc4(255,255,255,255)) )
     {
         return false;
     }
-    
+    /*
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Point origin = Director::getInstance()->getVisibleOrigin();
-
+	
     /////////////////////////////
     // 2. add a menu item with "X" image, which is clicked to quit the program
     //    you may modify it.
@@ -71,11 +71,15 @@ bool HelloWorld::init()
 
     // add the sprite as a child to this layer
     this->addChild(sprite, 0);
-    
+    */
+
+	TMXTiledMap* tmxMap = TMXTiledMap::create("Tile/tdMap.tmx");
+
+	this->addChild(tmxMap,1,1);
+
     return true;
 }
-
-
+/*
 void HelloWorld::menuCloseCallback(Object* pSender)
 {
     Director::getInstance()->end();
@@ -84,3 +88,4 @@ void HelloWorld::menuCloseCallback(Object* pSender)
     exit(0);
 #endif
 }
+*/

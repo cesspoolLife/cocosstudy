@@ -3,7 +3,7 @@
 
 #include "cocos2d.h"
 
-class HelloWorld : public cocos2d::Layer
+class HelloWorld : public cocos2d::LayerColor
 {
 public:
     // Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
@@ -13,7 +13,7 @@ public:
     static cocos2d::Scene* scene();
     
     // a selector callback
-    void menuCloseCallback(Object* pSender);
+    //void menuCloseCallback(Object* pSender);
     
     // implement the "static node()" method manually
     CREATE_FUNC(HelloWorld);
