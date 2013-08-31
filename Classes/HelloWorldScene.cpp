@@ -69,7 +69,11 @@ bool HelloWorld::init()
 
     // position the sprite on the center of the screen
     sprite->setPosition(Point(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
-
+	Rect rect = sprite->getTextureRect();
+	float wScale = visibleSize.width/rect.size.width;
+	float hScale = visibleSize.height/rect.size.height;
+	sprite->setScaleX(wScale);
+	sprite->setScaleY(hScale);
     // add the sprite as a child to this layer
     this->addChild(sprite, 0);
     */
