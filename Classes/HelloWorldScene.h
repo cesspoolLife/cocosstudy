@@ -2,6 +2,7 @@
 #define __HELLOWORLD_SCENE_H__
 
 #include "cocos2d.h"
+#include "Character.h"
 
 class HelloWorld : public cocos2d::LayerColor
 {
@@ -17,6 +18,21 @@ public:
     
     // implement the "static node()" method manually
     CREATE_FUNC(HelloWorld);
+
+	void checkPosition(float dt);
+
+private:
+	Character* character;
+
+	cocos2d::TMXTiledMap* tmxMap;
+	cocos2d::TMXLayer* building;
+	cocos2d::TMXLayer* wayinfo;
+	cocos2d::Sprite* sprite ;
+
+	cocos2d::Size mSize;
+	cocos2d::Size tSize;
+	float wScale;
+	float hScale;
 };
 
 #endif // __HELLOWORLD_SCENE_H__

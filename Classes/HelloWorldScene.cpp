@@ -1,5 +1,4 @@
 #include "HelloWorldScene.h"
-#include "Character.h"
 
 USING_NS_CC;
 
@@ -30,68 +29,82 @@ bool HelloWorld::init()
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Point origin = Director::getInstance()->getVisibleOrigin();
-	
-/*    /////////////////////////////
-    // 2. add a menu item with "X" image, which is clicked to quit the program
-    //    you may modify it.
 
-    // add a "close" icon to exit the progress. it's an autorelease object
-    MenuItemImage *closeItem = MenuItemImage::create(
-                                        "CloseNormal.png",
-                                        "CloseSelected.png",
-                                        CC_CALLBACK_1(HelloWorld::menuCloseCallback, this));
-    
-	closeItem->setPosition(Point(origin.x + visibleSize.width - closeItem->getContentSize().width/2 ,
-                                origin.y + closeItem->getContentSize().height/2));
 
-    // create menu, it's an autorelease object
-    Menu* menu = Menu::create(closeItem, NULL);
-    menu->setPosition(Point::ZERO);
-    this->addChild(menu, 1);
-
-    /////////////////////////////
-    // 3. add your codes below...
-
-    // add a label shows "Hello World"
-    // create and initialize a label
-    
-    LabelTTF* label = LabelTTF::create("Hello World", "Arial", 24);
-    
-    // position the label on the center of the screen
-    label->setPosition(Point(origin.x + visibleSize.width/2,
-                            origin.y + visibleSize.height - label->getContentSize().height));
-
-    // add the label as a child to this layer
-    this->addChild(label, 1);
-
-    // add "HelloWorld" splash screen"
-    Sprite* sprite = Sprite::create("HelloWorld.png");
-
-    // position the sprite on the center of the screen
-    sprite->setPosition(Point(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
-	Rect rect = sprite->getTextureRect();
-	float wScale = visibleSize.width/rect.size.width;
-	float hScale = visibleSize.height/rect.size.height;
-	sprite->setScaleX(wScale);
-	sprite->setScaleY(hScale);
-    // add the sprite as a child to this layer
-    this->addChild(sprite, 0);
-    */
-
-	TMXTiledMap* tmxMap = TMXTiledMap::create("Tile/tdMap.tmx");
-	Size mSize = tmxMap->getMapSize();
-	Size tSize = tmxMap->getTileSize();
-	float wScale = visibleSize.width/(mSize.width*tSize.width);
-	float hScale = visibleSize.height/(mSize.height*tSize.height);
+	tmxMap = TMXTiledMap::create("Tile/tdMap.tmx");
+	building = tmxMap->layerNamed("Building");
+	wayinfo = tmxMap->layerNamed("way");
+	wayinfo->setVisible(false);
+	mSize = tmxMap->getMapSize();
+	tSize = tmxMap->getTileSize();
+	wScale = visibleSize.width/(mSize.width*tSize.width);
+	hScale = visibleSize.height/(mSize.height*tSize.height);
 	tmxMap->setScaleX(wScale);
 	tmxMap->setScaleY(hScale);
 
 	this->addChild(tmxMap,0,1);
+	TMXObjectGroup* objects = tmxMap->objectGroupNamed("Object");
+	Dictionary* spawnPoint = objects->objectNamed("SpawnPoint");
+	int x = ((String*)spawnPoint->objectForKey("x"))->intValue();
+	int y = ((String*)spawnPoint->objectForKey("y"))->intValue();
 
-	
-
+	character = new Character();
+	sprite = character->getCaracter();
+	sprite->setPosition(Point(x*wScale, y*hScale));
+	this->addChild(sprite,1,2);
+	ActionInterval* animate = character->leftAnimation();
+	ActionInterval* move = character->leftMove();
+//	Action* rep = RepeatForever::create(animate);
+	Action* actionmove = RepeatForever::create(move);
+	ActionInterval* swq = Spawn::create(move, animate, NULL);
+	Action* rep = RepeatForever::create(swq);
+	sprite->runAction(rep);
+	this->schedule(schedule_selector(HelloWorld::checkPosition), 0.3f);
     return true;
 }
+
+void HelloWorld::checkPosition(float dt) {
+	Point p = sprite->getPosition();
+	int pX = p.x/(wScale*tSize.width); 
+	int pY = (hScale*mSize.height*tSize.height-p.y)/(hScale*tSize.height);
+	int Gid = wayinfo->getTileGIDAt(Point(pX-1,pY));
+	if (Gid){
+		Dictionary* properties = tmxMap->propertiesForGID(Gid);
+		if(properties) {
+			String* way = (String*)properties->objectForKey("is_way");
+			if (way&&(way->compare("YES")==0)) {
+			}
+			else {
+				sprite->stopAllActions();
+				ActionInterval* animate = character->downAnimation();
+				ActionInterval* move = character->downMove();
+				Action* actionmove = RepeatForever::create(move);
+				ActionInterval* swq = Spawn::create(move, animate, NULL);
+				Action* rep = RepeatForever::create(swq);
+				sprite->runAction(rep);
+			}
+		}
+		else {
+			sprite->stopAllActions();
+				ActionInterval* animate = character->downAnimation();
+				ActionInterval* move = character->downMove();
+		/*		Action* actionmove = RepeatForever::create(move);
+				ActionInterval* swq = Spawn::create(move, animate, NULL);
+				Action* rep = RepeatForever::create(swq);*/
+				sprite->runAction(move);
+		}
+	}
+	else {
+		sprite->stopAllActions();
+			ActionInterval* animate = character->downAnimation(); //here runtime ERROR!!
+				ActionInterval* move = character->downMove();
+			//	Action* actionmove = RepeatForever::create(move);
+			//	ActionInterval* swq = Spawn::create(move, animate, NULL);
+			//	Action* rep = RepeatForever::create(swq);
+				sprite->runAction(move);
+	}
+}
+
 /*
 void HelloWorld::menuCloseCallback(Object* pSender)
 {
