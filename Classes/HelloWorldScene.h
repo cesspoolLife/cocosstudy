@@ -2,7 +2,7 @@
 #define __HELLOWORLD_SCENE_H__
 
 #include "cocos2d.h"
-#include "Character.h"
+#include "MonsterManage.h"
 
 class HelloWorld : public cocos2d::LayerColor
 {
@@ -22,7 +22,7 @@ public:
 	void checkPosition(float dt);
 
 private:
-	Character* character;
+	MonsterManage* mm;
 
 	cocos2d::TMXTiledMap* tmxMap;
 	cocos2d::TMXLayer* building;

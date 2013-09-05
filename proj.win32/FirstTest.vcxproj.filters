@@ -18,7 +18,7 @@
     <ClCompile Include="..\Classes\HelloWorldScene.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Character.cpp">
+    <ClCompile Include="..\Classes\Monster.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -32,7 +32,7 @@
     <ClInclude Include="..\Classes\HelloWorldScene.h">
       <Filter>Classes</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Character.h">
+    <ClInclude Include="..\Classes\Monster.h">
       <Filter>Classes</Filter>
     </ClInclude>
   </ItemGroup>

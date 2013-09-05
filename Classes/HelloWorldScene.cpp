@@ -48,12 +48,12 @@ bool HelloWorld::init()
 	int x = ((String*)spawnPoint->objectForKey("x"))->intValue();
 	int y = ((String*)spawnPoint->objectForKey("y"))->intValue();
 
-	character = new Character();
-	sprite = character->getCaracter();
+	mm = new MonsterManage();
+	mm->createMonster();
 	sprite->setPosition(Point(x*wScale, y*hScale));
 	this->addChild(sprite,1,2);
-	ActionInterval* animate = character->leftAnimation();
-	ActionInterval* move = character->leftMove();
+	ActionInterval* animate = monster->leftAnimation();
+	ActionInterval* move = monster->leftMove();
 //	Action* rep = RepeatForever::create(animate);
 	Action* actionmove = RepeatForever::create(move);
 	ActionInterval* swq = Spawn::create(move, animate, NULL);
@@ -76,9 +76,8 @@ void HelloWorld::checkPosition(float dt) {
 			}
 			else {
 				sprite->stopAllActions();
-				ActionInterval* animate = character->downAnimation();
-				ActionInterval* move = character->downMove();
-				Action* actionmove = RepeatForever::create(move);
+				ActionInterval* animate = monster->downAnimation();
+				ActionInterval* move = monster->downMove();
 				ActionInterval* swq = Spawn::create(move, animate, NULL);
 				Action* rep = RepeatForever::create(swq);
 				sprite->runAction(rep);
@@ -86,22 +85,20 @@ void HelloWorld::checkPosition(float dt) {
 		}
 		else {
 			sprite->stopAllActions();
-				ActionInterval* animate = character->downAnimation();
-				ActionInterval* move = character->downMove();
-		/*		Action* actionmove = RepeatForever::create(move);
+				ActionInterval* animate = monster->downAnimation();
+				ActionInterval* move = monster->downMove();
 				ActionInterval* swq = Spawn::create(move, animate, NULL);
-				Action* rep = RepeatForever::create(swq);*/
-				sprite->runAction(move);
+				Action* rep = RepeatForever::create(swq);
+				sprite->runAction(rep);
 		}
 	}
 	else {
 		sprite->stopAllActions();
-			ActionInterval* animate = character->downAnimation(); //here runtime ERROR!!
-				ActionInterval* move = character->downMove();
-			//	Action* actionmove = RepeatForever::create(move);
-			//	ActionInterval* swq = Spawn::create(move, animate, NULL);
-			//	Action* rep = RepeatForever::create(swq);
-				sprite->runAction(move);
+			ActionInterval* animate = monster->downAnimation(); //here runtime ERROR!!
+				ActionInterval* move = monster->downMove();
+				ActionInterval* swq = Spawn::create(move, animate, NULL);
+				Action* rep = RepeatForever::create(swq);
+				sprite->runAction(rep);
 	}
 }
 
