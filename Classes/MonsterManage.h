@@ -1,5 +1,5 @@
-#ifndef __MONSTER_H__
-#define __MONSTER_H__
+#ifndef __MONSTERMANAGE_H__
+#define __MONSTERMANAGE_H__
 
 #include "cocos2d.h"
 #include "Monster.h"

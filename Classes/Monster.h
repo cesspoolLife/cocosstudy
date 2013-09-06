@@ -1,14 +1,13 @@
-#ifndef __M ONSTER_H__
+#ifndef __MONSTER_H__
 #define __MONSTER_H__
 
 #include "cocos2d.h"
 
 class Monster : public cocos2d::Sprite
 {
-private:
+public:
 	int hp;
 	int speed;
-	cocos2d::Texture2D* texture;
 	cocos2d::Animation* downImage;
 	cocos2d::Point downSpeed;
 	cocos2d::Animation* upImage;

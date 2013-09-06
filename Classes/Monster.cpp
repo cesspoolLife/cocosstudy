@@ -3,31 +3,34 @@
 USING_NS_CC;
 
 Monster* Monster::monsterCreate(int type) {
+	Monster* monster = NULL;
 	Texture2D* texture = TextureCache::sharedTextureCache()->addImage("enemy.png");
-	Monster* monster = (Monster*)Sprite::createWithTexture(texture, CCRectMake(32,0,32,32));
-	monster->initSprite(texture);
+	monster = (Monster*)Sprite::createWithTexture(texture, CCRectMake(32,0,32,32));
+//	monster->initSprite(texture);
 	return monster;
 }
+
 void Monster::initSprite(Texture2D* t){
 	this->downImage = Animation::create();
 	this->upImage = Animation::create();
 	this->rightImage = Animation::create();
 	this->leftImage = Animation::create();
+
 	this->downImage->setDelayPerUnit(0.3);
 	for(int i=0; i<3; i++){
-		this->downImage->addSpriteFrameWithTexture(texture, Rect(i*32,0*32,32,32));
+		this->downImage->addSpriteFrameWithTexture(t, Rect(i*32,0*32,32,32));
 	}
 	this->rightImage->setDelayPerUnit(0.3);
 	for(int i=0; i<3; i++){
-		this->rightImage->addSpriteFrameWithTexture(texture, CCRectMake(i*32,2*32,32,32));
+		this->rightImage->addSpriteFrameWithTexture(t, Rect(i*32,2*32,32,32));
 	}
 	this->upImage->setDelayPerUnit(0.3);
 	for(int i=0; i<3; i++){
-		this->upImage->addSpriteFrameWithTexture(texture, CCRectMake(i*32,3*32,32,32));
+		this->upImage->addSpriteFrameWithTexture(t, Rect(i*32,3*32,32,32));
 	}
 	this->leftImage->setDelayPerUnit(0.3);
 	for(int i=0; i<3; i++){
-		this->leftImage->addSpriteFrameWithTexture(texture, CCRectMake(i*32,1*32,32,32));
+		this->leftImage->addSpriteFrameWithTexture(t, Rect(i*32,1*32,32,32));
 	}
 	this->downImage->retain();
 	this->rightImage->retain();
