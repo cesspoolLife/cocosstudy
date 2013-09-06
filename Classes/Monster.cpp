@@ -2,35 +2,37 @@
 
 USING_NS_CC;
 
-
 Monster* Monster::monsterCreate(int type) {
 	Texture2D* texture = TextureCache::sharedTextureCache()->addImage("enemy.png");
 	Monster* monster = (Monster*)Sprite::createWithTexture(texture, CCRectMake(32,0,32,32));
-	monster->downImage = Animation::create();
-	monster->upImage = Animation::create();
-	monster->rightImage = Animation::create();
-	monster->leftImage = Animation::create();
-
-	monster->downImage->setDelayPerUnit(0.3);
+	monster->initSprite(texture);
+	return monster;
+}
+void Monster::initSprite(Texture2D* t){
+	this->downImage = Animation::create();
+	this->upImage = Animation::create();
+	this->rightImage = Animation::create();
+	this->leftImage = Animation::create();
+	this->downImage->setDelayPerUnit(0.3);
 	for(int i=0; i<3; i++){
-		monster->downImage->addSpriteFrameWithTexture(texture, Rect(i*32,0*32,32,32));
+		this->downImage->addSpriteFrameWithTexture(texture, Rect(i*32,0*32,32,32));
 	}
-	monster->leftImage->setDelayPerUnit(0.3);
+	this->rightImage->setDelayPerUnit(0.3);
 	for(int i=0; i<3; i++){
-		monster->leftImage->addSpriteFrameWithTexture(texture, CCRectMake(i*32,1*32,32,32));
+		this->rightImage->addSpriteFrameWithTexture(texture, CCRectMake(i*32,2*32,32,32));
 	}
-	monster->rightImage->setDelayPerUnit(0.3);
+	this->upImage->setDelayPerUnit(0.3);
 	for(int i=0; i<3; i++){
-		monster->rightImage->addSpriteFrameWithTexture(texture, CCRectMake(i*32,2*32,32,32));
+		this->upImage->addSpriteFrameWithTexture(texture, CCRectMake(i*32,3*32,32,32));
 	}
-	monster->upImage->setDelayPerUnit(0.3);
+	this->leftImage->setDelayPerUnit(0.3);
 	for(int i=0; i<3; i++){
-		monster->upImage->addSpriteFrameWithTexture(texture, CCRectMake(i*32,3*32,32,32));
+		this->leftImage->addSpriteFrameWithTexture(texture, CCRectMake(i*32,1*32,32,32));
 	}
-	monster->downImage->retain();
-	monster->rightImage->retain();
-	monster->leftImage->retain();
-	monster->upImage->retain();
+	this->downImage->retain();
+	this->rightImage->retain();
+	this->leftImage->retain();
+	this->upImage->retain();
 }
 
 void Monster::initMove(int s){

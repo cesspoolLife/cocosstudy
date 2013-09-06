@@ -27,8 +27,7 @@ public:
 	cocos2d::ActionInterval* rightMove();
 	cocos2d::ActionInterval* upMove();
 	cocos2d::ActionInterval* downMove();
-private:
-	void initSprite();
+	void initSprite(cocos2d::Texture2D* t);
 	void initMove(int s);
 };
 

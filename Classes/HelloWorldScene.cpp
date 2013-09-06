@@ -49,22 +49,15 @@ bool HelloWorld::init()
 	int y = ((String*)spawnPoint->objectForKey("y"))->intValue();
 
 	mm = new MonsterManage();
-	mm->createMonster();
-	sprite->setPosition(Point(x*wScale, y*hScale));
-	this->addChild(sprite,1,2);
-	ActionInterval* animate = monster->leftAnimation();
-	ActionInterval* move = monster->leftMove();
-//	Action* rep = RepeatForever::create(animate);
-	Action* actionmove = RepeatForever::create(move);
-	ActionInterval* swq = Spawn::create(move, animate, NULL);
-	Action* rep = RepeatForever::create(swq);
-	sprite->runAction(rep);
-	this->schedule(schedule_selector(HelloWorld::checkPosition), 0.3f);
+	this->addChild(mm->createMonster(Point(x*wScale, y*hScale)),1);
+//	mm->playMonster();
+
+//	this->schedule(schedule_selector(HelloWorld::checkPosition), 0.3f);
     return true;
 }
 
 void HelloWorld::checkPosition(float dt) {
-	Point p = sprite->getPosition();
+/*	Point p = sprite->getPosition();
 	int pX = p.x/(wScale*tSize.width); 
 	int pY = (hScale*mSize.height*tSize.height-p.y)/(hScale*tSize.height);
 	int Gid = wayinfo->getTileGIDAt(Point(pX-1,pY));
@@ -99,7 +92,7 @@ void HelloWorld::checkPosition(float dt) {
 				ActionInterval* swq = Spawn::create(move, animate, NULL);
 				Action* rep = RepeatForever::create(swq);
 				sprite->runAction(rep);
-	}
+	}*/
 }
 
 /*
