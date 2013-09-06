@@ -6,7 +6,7 @@ Monster* Monster::monsterCreate(int type) {
 	Monster* monster = NULL;
 	Texture2D* texture = TextureCache::sharedTextureCache()->addImage("enemy.png");
 	monster = (Monster*)Sprite::createWithTexture(texture, CCRectMake(32,0,32,32));
-//	monster->initSprite(texture);
+	monster->initSprite(texture);
 	return monster;
 }
 
@@ -15,7 +15,7 @@ void Monster::initSprite(Texture2D* t){
 	this->upImage = Animation::create();
 	this->rightImage = Animation::create();
 	this->leftImage = Animation::create();
-
+/*
 	this->downImage->setDelayPerUnit(0.3);
 	for(int i=0; i<3; i++){
 		this->downImage->addSpriteFrameWithTexture(t, Rect(i*32,0*32,32,32));
@@ -35,7 +35,7 @@ void Monster::initSprite(Texture2D* t){
 	this->downImage->retain();
 	this->rightImage->retain();
 	this->leftImage->retain();
-	this->upImage->retain();
+	this->upImage->retain();*/
 }
 
 void Monster::initMove(int s){

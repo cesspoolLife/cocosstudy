@@ -8,7 +8,6 @@ MonsterManage::MonsterManage(){
 
 Monster* MonsterManage::createMonster(Point p){
 	Monster* monster = Monster::monsterCreate(0);
-	monster->initMove(40);
 	monsters->addObject(monster);
 	monster->setPosition(p);
 	return monster;
