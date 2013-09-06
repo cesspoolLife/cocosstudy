@@ -6,44 +6,48 @@ Monster* Monster::monsterCreate(int type) {
 	Monster* monster = NULL;
 	Texture2D* texture = TextureCache::sharedTextureCache()->addImage("enemy.png");
 	monster = (Monster*)Sprite::createWithTexture(texture, CCRectMake(32,0,32,32));
-	monster->initSprite(texture);
+	Animation* downAni = Animation::create();
+	Animation* upAni = Animation::create();
+	Animation* rightAni = Animation::create();
+	Animation* leftAni = Animation::create();
+	downAni->setDelayPerUnit(0.3);
+	for(int i=0; i<3; i++){
+		downAni->addSpriteFrameWithTexture(texture, Rect(i*32,0*32,32,32));
+	}
+	rightAni->setDelayPerUnit(0.3);
+	for(int i=0; i<3; i++){
+		rightAni->addSpriteFrameWithTexture(texture, Rect(i*32,2*32,32,32));
+	}
+	upAni->setDelayPerUnit(0.3);
+	for(int i=0; i<3; i++){
+		upAni->addSpriteFrameWithTexture(texture, Rect(i*32,3*32,32,32));
+	}
+	leftAni->setDelayPerUnit(0.3);
+	for(int i=0; i<3; i++){
+		leftAni->addSpriteFrameWithTexture(texture, Rect(i*32,1*32,32,32));
+	}
+	monster->initSprite(downAni, upAni, rightAni, leftAni);
+	monster->initMove(40);
 	return monster;
 }
 
-void Monster::initSprite(Texture2D* t){
-	this->downImage = Animation::create();
-	this->upImage = Animation::create();
-	this->rightImage = Animation::create();
-	this->leftImage = Animation::create();
-/*
-	this->downImage->setDelayPerUnit(0.3);
-	for(int i=0; i<3; i++){
-		this->downImage->addSpriteFrameWithTexture(t, Rect(i*32,0*32,32,32));
-	}
-	this->rightImage->setDelayPerUnit(0.3);
-	for(int i=0; i<3; i++){
-		this->rightImage->addSpriteFrameWithTexture(t, Rect(i*32,2*32,32,32));
-	}
-	this->upImage->setDelayPerUnit(0.3);
-	for(int i=0; i<3; i++){
-		this->upImage->addSpriteFrameWithTexture(t, Rect(i*32,3*32,32,32));
-	}
-	this->leftImage->setDelayPerUnit(0.3);
-	for(int i=0; i<3; i++){
-		this->leftImage->addSpriteFrameWithTexture(t, Rect(i*32,1*32,32,32));
-	}
+void Monster::initSprite(Animation* d, Animation* u, Animation* r, Animation* l){
+	this->downImage = d;
+	this->upImage = u;
+	this->rightImage = r;
+	this->leftImage = l;
 	this->downImage->retain();
 	this->rightImage->retain();
 	this->leftImage->retain();
-	this->upImage->retain();*/
+	this->upImage->retain();
 }
 
 void Monster::initMove(int s){
 	this->speed = s;
-	this->upSpeed = Point(0,(s));
-	this->downSpeed = Point(0,-(s));
-	this->leftSpeed = Point(-(s),0);
-	this->rightSpeed = Point((s),0);
+	this->upSpeed = Point(0,s);
+	this->downSpeed = Point(0,(0-s));
+	this->leftSpeed = Point((0-s),0);
+	this->rightSpeed = Point(s,0);
 }
 
 
