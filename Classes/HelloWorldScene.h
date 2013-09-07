@@ -23,6 +23,9 @@ public:
 
 	virtual void ccTouchesBegan(cocos2d::Set* pTouches, cocos2d::Event* event);
 
+	//게임 플레이 인터페이스 생성
+	void createPlayMenu();
+
 private:
 	MonsterManage* mm;
 
@@ -35,6 +38,9 @@ private:
 	cocos2d::Size tSize;
 	float wScale;
 	float hScale;
+
+	//게임 플레이 메뉴
+	cocos2d::Menu* playMenu;
 };
 
 #endif // __HELLOWORLD_SCENE_H__

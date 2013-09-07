@@ -1,6 +1,7 @@
 #include "HelloWorldScene.h"
 #include "Tower.h"
 
+
 USING_NS_CC;
 
 Scene* HelloWorld::scene()
@@ -59,15 +60,14 @@ bool HelloWorld::init()
 	// 타워 리소스 로드
 	Sprite* towerTexture = Tower::create("tower2.png",Rect(0,0,128,128));
 	
-	MenuItemImage* towerMenu = MenuItemImage::create("TowerMenu.png","TowerMenu.png");
-	towerMenu->setScaleX(wScale);
-	towerMenu->setScaleY(hScale);
-	Menu* playMenu = Menu::create(towerMenu,NULL);
-
-	playMenu->alignItemsHorizontally();
-	playMenu->setPosition(ccp(visibleSize.width/5*4,visibleSize.height/5*4));
-	
+	createPlayMenu();
 	this->addChild(playMenu);
+	
+
+	//playMenu->alignItemsHorizontally();
+	//playMenu->setPosition(ccp(visibleSize.width - 50,visibleSize.height - 30));
+	
+	//this->addChild(playMenu);
 
 	this->setTouchEnabled(true);
 
@@ -132,3 +132,12 @@ void HelloWorld::menuCloseCallback(Object* pSender)
 #endif
 }
 */
+
+void HelloWorld::createPlayMenu()
+{
+	MenuItemImage* buildButton = MenuItemImage::create("TowerMenu.png","TowerMenu.png");
+	buildButton->setScaleX(wScale);
+	buildButton->setScaleY(hScale);
+	playMenu = Menu::create(buildButton, NULL);
+	playMenu->setPosition(ccp(1230,690));
+}
