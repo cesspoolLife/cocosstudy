@@ -6,12 +6,19 @@
 
 class MonsterManage
 {
-private:
+public:
+	cocos2d::TMXTiledMap* tmxMap;
+	cocos2d::TMXLayer* wayinfo;
+	cocos2d::Size mSize;
+	cocos2d::Size tSize;
+	float wScale;
+	float hScale;
 	cocos2d::Array* monsters;
 public: 
-	MonsterManage();
+	MonsterManage(cocos2d::TMXTiledMap* tm, cocos2d::TMXLayer* wi, cocos2d::Size m, cocos2d::Size t, float w, float h);
 	Monster* createMonster(cocos2d::Point p);
-	void playMonster();
+	void playMonster(Monster* curMonster);
+	static void update(MonsterManage* mm);
 	~MonsterManage();
 };
 #endif

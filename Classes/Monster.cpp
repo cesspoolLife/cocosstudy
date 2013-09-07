@@ -28,6 +28,7 @@ Monster* Monster::monsterCreate(int type) {
 	}
 	monster->initSprite(downAni, upAni, rightAni, leftAni);
 	monster->initMove(40);
+
 	return monster;
 }
 
@@ -50,29 +51,36 @@ void Monster::initMove(int s){
 	this->rightSpeed = Point(s,0);
 }
 
-
-ActionInterval* Monster::leftAnimation(){
-	return Animate::create(leftImage);
-}
-ActionInterval* Monster::downAnimation(){
-	return Animate::create(downImage);
-}
-ActionInterval* Monster::rightAnimation(){
-	return Animate::create(rightImage);
-}
-ActionInterval* Monster::upAnimation(){
-	return Animate::create(upImage);
+void Monster::setDirection(int d){
+	this->direction = d;
 }
 
-ActionInterval* Monster::leftMove(){
-	return  MoveBy::create(0.9,leftSpeed);
+ActionInterval* Monster::getAnimation(){
+	switch (this->direction)
+	{
+	case 1:
+		return Animate::create(leftImage);
+	case 2:
+		return Animate::create(rightImage);
+	case 3:
+		return Animate::create(upImage);
+	case 4:
+		return Animate::create(downImage);
+	}
+	return NULL;
 }
-ActionInterval* Monster::rightMove(){
-	return  MoveBy::create(0.9,rightSpeed);
-}
-ActionInterval* Monster::downMove(){
-	return  MoveBy::create(0.9,downSpeed);
-}
-ActionInterval* Monster::upMove(){
-	return  MoveBy::create(0.9,upSpeed);
+
+ActionInterval* Monster::getMove(){
+	switch (this->direction)
+	{
+	case 1:
+		return MoveBy::create(0.9,leftSpeed);
+	case 2:
+		return MoveBy::create(0.9,rightSpeed);
+	case 3:
+		return MoveBy::create(0.9,upSpeed);
+	case 4:
+		return MoveBy::create(0.9,downSpeed);
+	}
+	return NULL;
 }

@@ -48,51 +48,14 @@ bool HelloWorld::init()
 	int x = ((String*)spawnPoint->objectForKey("x"))->intValue();
 	int y = ((String*)spawnPoint->objectForKey("y"))->intValue();
 
-	mm = new MonsterManage();
+	mm = new MonsterManage(tmxMap, wayinfo, mSize, tSize, wScale, hScale);
 	this->addChild(mm->createMonster(Point(x*wScale, y*hScale)),1);
-	mm->playMonster();
-
-//	this->schedule(schedule_selector(HelloWorld::checkPosition), 0.3f);
+	this->schedule(schedule_selector(HelloWorld::checkPosition), 0.3f);
     return true;
 }
 
 void HelloWorld::checkPosition(float dt) {
-/*	Point p = sprite->getPosition();
-	int pX = p.x/(wScale*tSize.width); 
-	int pY = (hScale*mSize.height*tSize.height-p.y)/(hScale*tSize.height);
-	int Gid = wayinfo->getTileGIDAt(Point(pX-1,pY));
-	if (Gid){
-		Dictionary* properties = tmxMap->propertiesForGID(Gid);
-		if(properties) {
-			String* way = (String*)properties->objectForKey("is_way");
-			if (way&&(way->compare("YES")==0)) {
-			}
-			else {
-				sprite->stopAllActions();
-				ActionInterval* animate = monster->downAnimation();
-				ActionInterval* move = monster->downMove();
-				ActionInterval* swq = Spawn::create(move, animate, NULL);
-				Action* rep = RepeatForever::create(swq);
-				sprite->runAction(rep);
-			}
-		}
-		else {
-			sprite->stopAllActions();
-				ActionInterval* animate = monster->downAnimation();
-				ActionInterval* move = monster->downMove();
-				ActionInterval* swq = Spawn::create(move, animate, NULL);
-				Action* rep = RepeatForever::create(swq);
-				sprite->runAction(rep);
-		}
-	}
-	else {
-		sprite->stopAllActions();
-			ActionInterval* animate = monster->downAnimation(); //here runtime ERROR!!
-				ActionInterval* move = monster->downMove();
-				ActionInterval* swq = Spawn::create(move, animate, NULL);
-				Action* rep = RepeatForever::create(swq);
-				sprite->runAction(rep);
-	}*/
+	MonsterManage::update(mm);
 }
 
 /*
