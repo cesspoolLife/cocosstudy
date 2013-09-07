@@ -1,5 +1,4 @@
 #include "HelloWorldScene.h"
-#include "Tower.h"
 
 USING_NS_CC;
 
@@ -31,7 +30,6 @@ bool HelloWorld::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Point origin = Director::getInstance()->getVisibleOrigin();
 
-	Size winSize = Director::sharedDirector()->getWinSize();
 
 	tmxMap = TMXTiledMap::create("Tile/tdMap.tmx");
 	building = tmxMap->layerNamed("Building");
@@ -47,32 +45,6 @@ bool HelloWorld::init()
 	this->addChild(tmxMap,0,1);
 	TMXObjectGroup* objects = tmxMap->objectGroupNamed("Object");
 	Dictionary* spawnPoint = objects->objectNamed("SpawnPoint");
-<<<<<<< HEAD
-	int x = ((String*)spawnPoint->objectForKey("x"))->intValue();
-	int y = ((String*)spawnPoint->objectForKey("y"))->intValue();
-	/*
-	mm = new MonsterManage();
-	this->addChild(mm->createMonster(Point(x*wScale, y*hScale)),1);
-	mm->playMonster();
-	*/
-//	this->schedule(schedule_selector(HelloWorld::checkPosition), 0.3f);
-
-	// 타워 리소스 로드
-	Sprite* towerTexture = Tower::create("tower2.png",Rect(0,0,128,128));
-	
-	MenuItemImage* towerMenu = MenuItemImage::create("TowerMenu.png","TowerMenu.png");
-	towerMenu->setScaleX(wScale);
-	towerMenu->setScaleY(hScale);
-	Menu* playMenu = Menu::create(towerMenu,NULL);
-
-	playMenu->alignItemsHorizontally();
-	playMenu->setPosition(ccp(visibleSize.width/5*4,visibleSize.height/5*4));
-	
-	this->addChild(playMenu);
-
-	this->setTouchEnabled(true);
-
-=======
 	x = ((String*)spawnPoint->objectForKey("x"))->intValue();
 	y = ((String*)spawnPoint->objectForKey("y"))->intValue();
 
@@ -84,20 +56,10 @@ bool HelloWorld::init()
 	Menu* pMenu = Menu::create(pMenuitem, NULL);
 	pMenu->setPosition(Point(1200,700));
 	this->addChild(pMenu);
->>>>>>> 4805046547becd8b74758e19d0d4c4f08628ee97
     return true;
 }
 void HelloWorld::createMonster(float dt){
 	this->addChild(mm->createMonster(Point(x*wScale, y*hScale)),1);
-}
-
-void HelloWorld::ccTouchesBegan(Set* pTouches, Event* event)
-{
-	SetIterator it = pTouches->begin();
-	Touch* touch = (Touch*)(*it);
-	Point touchPoint = touch->getLocation();
-	CCLog("%f   %f", touchPoint.x, touchPoint.y);
-	
 }
 
 void HelloWorld::checkPosition(float dt) {
