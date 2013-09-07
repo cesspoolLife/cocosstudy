@@ -24,10 +24,14 @@
     <ClCompile Include="..\Classes\MonsterManage.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="..\Classes\Tower.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\TowerManager.cpp">
+=======
+    <ClCompile Include="TileMap.cpp">
+>>>>>>> 4805046547becd8b74758e19d0d4c4f08628ee97
       <Filter>Classes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -50,7 +54,11 @@
     <ClInclude Include="..\Classes\Tower.h">
       <Filter>Classes</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="..\Classes\TowerManager.h">
+=======
+    <ClInclude Include="TileMap.h">
+>>>>>>> 4805046547becd8b74758e19d0d4c4f08628ee97
       <Filter>Classes</Filter>
     </ClInclude>
   </ItemGroup>

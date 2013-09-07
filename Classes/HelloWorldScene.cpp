@@ -47,6 +47,7 @@ bool HelloWorld::init()
 	this->addChild(tmxMap,0,1);
 	TMXObjectGroup* objects = tmxMap->objectGroupNamed("Object");
 	Dictionary* spawnPoint = objects->objectNamed("SpawnPoint");
+<<<<<<< HEAD
 	int x = ((String*)spawnPoint->objectForKey("x"))->intValue();
 	int y = ((String*)spawnPoint->objectForKey("y"))->intValue();
 	/*
@@ -71,7 +72,23 @@ bool HelloWorld::init()
 
 	this->setTouchEnabled(true);
 
+=======
+	x = ((String*)spawnPoint->objectForKey("x"))->intValue();
+	y = ((String*)spawnPoint->objectForKey("y"))->intValue();
+
+	mm = new MonsterManage(tmxMap, wayinfo, mSize, tSize, wScale, hScale);
+	this->schedule(schedule_selector(HelloWorld::createMonster), 1.0f);
+	this->schedule(schedule_selector(HelloWorld::checkPosition), 0.1f);
+
+	MenuItemFont* pMenuitem = MenuItemFont::create("Menu1");
+	Menu* pMenu = Menu::create(pMenuitem, NULL);
+	pMenu->setPosition(Point(1200,700));
+	this->addChild(pMenu);
+>>>>>>> 4805046547becd8b74758e19d0d4c4f08628ee97
     return true;
+}
+void HelloWorld::createMonster(float dt){
+	this->addChild(mm->createMonster(Point(x*wScale, y*hScale)),1);
 }
 
 void HelloWorld::ccTouchesBegan(Set* pTouches, Event* event)
@@ -84,42 +101,7 @@ void HelloWorld::ccTouchesBegan(Set* pTouches, Event* event)
 }
 
 void HelloWorld::checkPosition(float dt) {
-/*	Point p = sprite->getPosition();
-	int pX = p.x/(wScale*tSize.width); 
-	int pY = (hScale*mSize.height*tSize.height-p.y)/(hScale*tSize.height);
-	int Gid = wayinfo->getTileGIDAt(Point(pX-1,pY));
-	if (Gid){
-		Dictionary* properties = tmxMap->propertiesForGID(Gid);
-		if(properties) {
-			String* way = (String*)properties->objectForKey("is_way");
-			if (way&&(way->compare("YES")==0)) {
-			}
-			else {
-				sprite->stopAllActions();
-				ActionInterval* animate = monster->downAnimation();
-				ActionInterval* move = monster->downMove();
-				ActionInterval* swq = Spawn::create(move, animate, NULL);
-				Action* rep = RepeatForever::create(swq);
-				sprite->runAction(rep);
-			}
-		}
-		else {
-			sprite->stopAllActions();
-				ActionInterval* animate = monster->downAnimation();
-				ActionInterval* move = monster->downMove();
-				ActionInterval* swq = Spawn::create(move, animate, NULL);
-				Action* rep = RepeatForever::create(swq);
-				sprite->runAction(rep);
-		}
-	}
-	else {
-		sprite->stopAllActions();
-			ActionInterval* animate = monster->downAnimation(); //here runtime ERROR!!
-				ActionInterval* move = monster->downMove();
-				ActionInterval* swq = Spawn::create(move, animate, NULL);
-				Action* rep = RepeatForever::create(swq);
-				sprite->runAction(rep);
-	}*/
+	MonsterManage::update(mm);
 }
 
 /*
