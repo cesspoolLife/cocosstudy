@@ -1,4 +1,5 @@
 #include "HelloWorldScene.h"
+#include "Tower.h"
 
 USING_NS_CC;
 
@@ -30,6 +31,7 @@ bool HelloWorld::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Point origin = Director::getInstance()->getVisibleOrigin();
 
+	Size winSize = Director::sharedDirector()->getWinSize();
 
 	tmxMap = TMXTiledMap::create("Tile/tdMap.tmx");
 	building = tmxMap->layerNamed("Building");
@@ -47,13 +49,38 @@ bool HelloWorld::init()
 	Dictionary* spawnPoint = objects->objectNamed("SpawnPoint");
 	int x = ((String*)spawnPoint->objectForKey("x"))->intValue();
 	int y = ((String*)spawnPoint->objectForKey("y"))->intValue();
-
+	/*
 	mm = new MonsterManage();
 	this->addChild(mm->createMonster(Point(x*wScale, y*hScale)),1);
 	mm->playMonster();
-
+	*/
 //	this->schedule(schedule_selector(HelloWorld::checkPosition), 0.3f);
+
+	// 타워 리소스 로드
+	Sprite* towerTexture = Tower::create("tower2.png",Rect(0,0,128,128));
+	
+	MenuItemImage* towerMenu = MenuItemImage::create("TowerMenu.png","TowerMenu.png");
+	towerMenu->setScaleX(wScale);
+	towerMenu->setScaleY(hScale);
+	Menu* playMenu = Menu::create(towerMenu,NULL);
+
+	playMenu->alignItemsHorizontally();
+	playMenu->setPosition(ccp(visibleSize.width/5*4,visibleSize.height/5*4));
+	
+	this->addChild(playMenu);
+
+	this->setTouchEnabled(true);
+
     return true;
+}
+
+void HelloWorld::ccTouchesBegan(Set* pTouches, Event* event)
+{
+	SetIterator it = pTouches->begin();
+	Touch* touch = (Touch*)(*it);
+	Point touchPoint = touch->getLocation();
+	CCLog("%f   %f", touchPoint.x, touchPoint.y);
+	
 }
 
 void HelloWorld::checkPosition(float dt) {

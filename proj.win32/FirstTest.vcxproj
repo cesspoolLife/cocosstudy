@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{17384D89-47E5-4A18-809D-A69721C0485E}</ProjectGuid>
+    <ProjectGuid>{79B32F6C-E39A-4048-A911-24884A7865B8}</ProjectGuid>
     <RootNamespace>test_win32</RootNamespace>
     <Keyword>Win32Proj</Keyword>
   </PropertyGroup>
@@ -135,6 +135,8 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="..\Classes\Monster.cpp" />
     <ClCompile Include="..\Classes\MonsterManage.cpp" />
+    <ClCompile Include="..\Classes\Tower.cpp" />
+    <ClCompile Include="..\Classes\TowerManager.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -143,6 +145,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     <ClInclude Include="..\Classes\Monster.h" />
     <ClInclude Include="..\Classes\MonsterManage.h" />
     <ClInclude Include="..\Classes\Tower.h" />
+    <ClInclude Include="..\Classes\TowerManager.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>
