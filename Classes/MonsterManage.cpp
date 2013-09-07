@@ -14,7 +14,9 @@ MonsterManage::MonsterManage(cocos2d::TMXTiledMap* tm, cocos2d::TMXLayer* wi, co
 }
 
 Monster* MonsterManage::createMonster(Point p){
-	Monster* monster = Monster::monsterCreate(0);
+	srand(time(NULL));
+	int type = rand()%4;
+	Monster* monster = Monster::monsterCreate(type);
 	this->monsters->addObject(monster);
 	monster->setPosition(p);
 	monster->setDirection(1);
@@ -34,7 +36,6 @@ void MonsterManage::playMonster(Monster* curMonster){
 
 void MonsterManage::update(MonsterManage* mm) {
 	Object* monster = NULL;
-	CCLog(std::to_string(mm->hScale).c_str());
 	CCARRAY_FOREACH(mm->monsters, monster)
 	{
 		Monster* curMonster = (Monster*)monster;

@@ -3,31 +3,34 @@
 USING_NS_CC;
 
 Monster* Monster::monsterCreate(int type) {
+	int xIndex = 32*3*((int)(type%4));
+	int yIndex = 32*4*((int)(type/4));
 	Monster* monster = NULL;
 	Texture2D* texture = TextureCache::sharedTextureCache()->addImage("enemy.png");
-	monster = (Monster*)Sprite::createWithTexture(texture, CCRectMake(32,0,32,32));
+	CCLog(std::to_string(texture->getContentSize().width).c_str());
+	monster = (Monster*)Sprite::createWithTexture(texture, Rect(xIndex,0+yIndex,32,32));
 	Animation* downAni = Animation::create();
 	Animation* upAni = Animation::create();
 	Animation* rightAni = Animation::create();
 	Animation* leftAni = Animation::create();
 	downAni->setDelayPerUnit(0.3);
 	for(int i=0; i<3; i++){
-		downAni->addSpriteFrameWithTexture(texture, Rect(i*32,0*32,32,32));
+		downAni->addSpriteFrameWithTexture(texture, Rect((i*32)+xIndex,(0*32)+yIndex,32,32));
 	}
 	rightAni->setDelayPerUnit(0.3);
 	for(int i=0; i<3; i++){
-		rightAni->addSpriteFrameWithTexture(texture, Rect(i*32,2*32,32,32));
+		rightAni->addSpriteFrameWithTexture(texture, Rect((i*32)+xIndex,(2*32)+yIndex,32,32));
 	}
 	upAni->setDelayPerUnit(0.3);
 	for(int i=0; i<3; i++){
-		upAni->addSpriteFrameWithTexture(texture, Rect(i*32,3*32,32,32));
+		upAni->addSpriteFrameWithTexture(texture, Rect((i*32)+xIndex,(3*32)+yIndex,32,32));
 	}
 	leftAni->setDelayPerUnit(0.3);
 	for(int i=0; i<3; i++){
-		leftAni->addSpriteFrameWithTexture(texture, Rect(i*32,1*32,32,32));
+		leftAni->addSpriteFrameWithTexture(texture, Rect((i*32)+xIndex,(1*32)+yIndex,32,32));
 	}
 	monster->initSprite(downAni, upAni, rightAni, leftAni);
-	monster->initMove(140);
+	monster->initMove(20+30*type);
 
 	return monster;
 }

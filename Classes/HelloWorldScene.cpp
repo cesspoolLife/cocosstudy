@@ -45,13 +45,21 @@ bool HelloWorld::init()
 	this->addChild(tmxMap,0,1);
 	TMXObjectGroup* objects = tmxMap->objectGroupNamed("Object");
 	Dictionary* spawnPoint = objects->objectNamed("SpawnPoint");
-	int x = ((String*)spawnPoint->objectForKey("x"))->intValue();
-	int y = ((String*)spawnPoint->objectForKey("y"))->intValue();
+	x = ((String*)spawnPoint->objectForKey("x"))->intValue();
+	y = ((String*)spawnPoint->objectForKey("y"))->intValue();
 
 	mm = new MonsterManage(tmxMap, wayinfo, mSize, tSize, wScale, hScale);
-	this->addChild(mm->createMonster(Point(x*wScale, y*hScale)),1);
+	this->schedule(schedule_selector(HelloWorld::createMonster), 1.0f);
 	this->schedule(schedule_selector(HelloWorld::checkPosition), 0.1f);
+
+	MenuItemFont* pMenuitem = MenuItemFont::create("Menu1");
+	Menu* pMenu = Menu::create(pMenuitem, NULL);
+	pMenu->setPosition(Point(1200,700));
+	this->addChild(pMenu);
     return true;
+}
+void HelloWorld::createMonster(float dt){
+	this->addChild(mm->createMonster(Point(x*wScale, y*hScale)),1);
 }
 
 void HelloWorld::checkPosition(float dt) {

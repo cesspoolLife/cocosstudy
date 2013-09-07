@@ -20,6 +20,7 @@ public:
     CREATE_FUNC(HelloWorld);
 
 	void checkPosition(float dt);
+	void createMonster(float dt);
 
 private:
 	MonsterManage* mm;
@@ -33,6 +34,8 @@ private:
 	cocos2d::Size tSize;
 	float wScale;
 	float hScale;
+	int x;
+	int y;
 };
 
 #endif // __HELLOWORLD_SCENE_H__
