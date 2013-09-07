@@ -50,7 +50,7 @@ bool HelloWorld::init()
 
 	mm = new MonsterManage(tmxMap, wayinfo, mSize, tSize, wScale, hScale);
 	this->addChild(mm->createMonster(Point(x*wScale, y*hScale)),1);
-	this->schedule(schedule_selector(HelloWorld::checkPosition), 0.3f);
+	this->schedule(schedule_selector(HelloWorld::checkPosition), 0.1f);
     return true;
 }
 

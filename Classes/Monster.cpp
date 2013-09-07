@@ -27,7 +27,7 @@ Monster* Monster::monsterCreate(int type) {
 		leftAni->addSpriteFrameWithTexture(texture, Rect(i*32,1*32,32,32));
 	}
 	monster->initSprite(downAni, upAni, rightAni, leftAni);
-	monster->initMove(40);
+	monster->initMove(140);
 
 	return monster;
 }
@@ -49,6 +49,10 @@ void Monster::initMove(int s){
 	this->downSpeed = Point(0,(0-s));
 	this->leftSpeed = Point((0-s),0);
 	this->rightSpeed = Point(s,0);
+}
+
+int Monster::getDirection(){
+	return this->direction;
 }
 
 void Monster::setDirection(int d){

@@ -27,6 +27,7 @@ public:
 	static Monster* monsterCreate(int type);
 	void initSprite(cocos2d::Animation* d, cocos2d::Animation* u, cocos2d::Animation* r, cocos2d::Animation* l);
 	void initMove(int s);
+	int getDirection();
 	void setDirection(int d);
 	cocos2d::ActionInterval* getAnimation();
 	cocos2d::ActionInterval* getMove();

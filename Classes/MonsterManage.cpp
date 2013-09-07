@@ -41,25 +41,56 @@ void MonsterManage::update(MonsterManage* mm) {
 		Point p = curMonster->getPosition();
 		int pX = p.x/(mm->wScale*mm->tSize.width); 
 		int pY = (mm->hScale*mm->mSize.height*mm->tSize.height-p.y)/(mm->hScale*mm->tSize.height);
-		int Gid = mm->wayinfo->getTileGIDAt(Point(pX-1,pY));
+		int Gid;
+		int rGid;
+		int lGid;
+		int rDirection;
+		int lDirection;
+		int direction = curMonster->getDirection();
+		switch(direction){
+		case 1:
+			Gid = mm->wayinfo->getTileGIDAt(Point(pX-1,pY));
+			rGid = mm->wayinfo->getTileGIDAt(Point(pX,pY-2));
+			rDirection = 3;
+			lDirection = 4;
+			break;
+		case 2:
+			Gid = mm->wayinfo->getTileGIDAt(Point(pX+1,pY));
+			rGid = mm->wayinfo->getTileGIDAt(Point(pX,pY+2));
+			rDirection = 4;
+			lDirection = 3;
+			break;
+		case 3:
+			Gid = mm->wayinfo->getTileGIDAt(Point(pX,pY-1));
+			rGid = mm->wayinfo->getTileGIDAt(Point(pX+2,pY));
+			rDirection = 2;
+			lDirection = 1;
+			break;
+		case 4:
+			Gid = mm->wayinfo->getTileGIDAt(Point(pX,pY+1));
+			rGid = mm->wayinfo->getTileGIDAt(Point(pX-2,pY));
+			rDirection = 1;
+			lDirection = 2;
+			break;
+		}
 		if (Gid){
-			Dictionary* properties = mm->tmxMap->propertiesForGID(Gid);
+	/*		Dictionary* properties = mm->tmxMap->propertiesForGID(Gid);
 			if(properties) {
 				String* way = (String*)properties->objectForKey("is_way");
 				if (way&&(way->compare("YES")==0)) {
 				}
 				else {
-					curMonster->setDirection(4);
-					mm->playMonster(curMonster);
 				}
 			}
 			else {
-				curMonster->setDirection(4);
-				mm->playMonster(curMonster);
-			}
+			}*/
 		}
 		else {
-			curMonster->setDirection(4);
+			if (rGid) {
+				curMonster->setDirection(rDirection);
+			}else {
+				curMonster->setDirection(lDirection);
+			}
 			mm->playMonster(curMonster);
 		}
 	}
