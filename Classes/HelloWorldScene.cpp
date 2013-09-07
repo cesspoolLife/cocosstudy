@@ -52,10 +52,6 @@ bool HelloWorld::init()
 	this->schedule(schedule_selector(HelloWorld::createMonster), 1.0f);
 	this->schedule(schedule_selector(HelloWorld::checkPosition), 0.1f);
 
-	MenuItemFont* pMenuitem = MenuItemFont::create("Menu1");
-	Menu* pMenu = Menu::create(pMenuitem, NULL);
-	pMenu->setPosition(Point(1200,700));
-	this->addChild(pMenu);
     return true;
 }
 void HelloWorld::createMonster(float dt){
