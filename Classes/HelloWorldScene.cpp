@@ -28,7 +28,7 @@ bool HelloWorld::init()
     {
         return false;
     }
-    
+    this->setTouchEnabled(true);
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Point origin = Director::getInstance()->getVisibleOrigin();
 
@@ -58,10 +58,10 @@ bool HelloWorld::init()
 //	this->schedule(schedule_selector(HelloWorld::checkPosition), 0.3f);
 
 	// 타워 리소스 로드
-	Sprite* towerTexture = Tower::create("tower2.png",Rect(0,0,128,128));
+	towerTexture = Tower::create("tower2.png",Rect(0,0,128,128));
 	
 	createPlayMenu();
-	this->addChild(playMenu);
+	
 	
 
 	//playMenu->alignItemsHorizontally();
@@ -69,7 +69,7 @@ bool HelloWorld::init()
 	
 	//this->addChild(playMenu);
 
-	this->setTouchEnabled(true);
+	CCSprite;
 
     return true;
 }
@@ -135,9 +135,20 @@ void HelloWorld::menuCloseCallback(Object* pSender)
 
 void HelloWorld::createPlayMenu()
 {
-	MenuItemImage* buildButton = MenuItemImage::create("TowerMenu.png","TowerMenu.png");
+	MenuItemImage* buildButton = MenuItemImage::create("TowerMenu.png","TowerMenu.png",this,HelloWorld::buildingTower);
 	buildButton->setScaleX(wScale);
 	buildButton->setScaleY(hScale);
 	playMenu = Menu::create(buildButton, NULL);
 	playMenu->setPosition(ccp(1230,690));
+	this->addChild(playMenu);
+	
+}
+
+void HelloWorld::buildingTower(Object*)
+{
+	playMenu->setVisible(false);
+	MenuItemSprite* sampleTower = MenuItemSprite::create(towerTexture,towerTexture);
+	selectTowerMenu = Menu::create(sampleTower, NULL);
+	selectTowerMenu->setPosition(ccp(640,690));
+	this->addChild(selectTowerMenu);
 }

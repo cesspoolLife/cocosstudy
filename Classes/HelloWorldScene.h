@@ -25,6 +25,8 @@ public:
 
 	//게임 플레이 인터페이스 생성
 	void createPlayMenu();
+	// 타워 지을 곳 위치 고르기
+	void buildingTower(cocos2d::Object*);
 
 private:
 	MonsterManage* mm;
@@ -41,6 +43,9 @@ private:
 
 	//게임 플레이 메뉴
 	cocos2d::Menu* playMenu;
+	cocos2d::Menu* selectTowerMenu;
+	cocos2d::Sprite* towerTexture;	// 타워 텍스쳐
+	
 };
 
 #endif // __HELLOWORLD_SCENE_H__
