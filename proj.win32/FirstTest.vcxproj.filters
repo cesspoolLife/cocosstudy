@@ -24,7 +24,7 @@
     <ClCompile Include="..\Classes\MonsterManage.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
-    <ClCompile Include="TileMap.cpp">
+    <ClCompile Include="..\Classes\TileMap.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -47,7 +47,7 @@
     <ClInclude Include="..\Classes\Tower.h">
       <Filter>Classes</Filter>
     </ClInclude>
-    <ClInclude Include="TileMap.h">
+    <ClInclude Include="..\Classes\TileMap.h">
       <Filter>Classes</Filter>
     </ClInclude>
   </ItemGroup>

@@ -30,32 +30,19 @@ bool HelloWorld::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Point origin = Director::getInstance()->getVisibleOrigin();
 
+	tm = new TileMap("Tile/tdMap.tmx");
+	tm->setScale(visibleSize);
 
-	tmxMap = TMXTiledMap::create("Tile/tdMap.tmx");
-	building = tmxMap->layerNamed("Building");
-	wayinfo = tmxMap->layerNamed("way");
-	wayinfo->setVisible(false);
-	mSize = tmxMap->getMapSize();
-	tSize = tmxMap->getTileSize();
-	wScale = visibleSize.width/(mSize.width*tSize.width);
-	hScale = visibleSize.height/(mSize.height*tSize.height);
-	tmxMap->setScaleX(wScale);
-	tmxMap->setScaleY(hScale);
+	this->addChild(tm->tmxMap,0,1);
 
-	this->addChild(tmxMap,0,1);
-	TMXObjectGroup* objects = tmxMap->objectGroupNamed("Object");
-	Dictionary* spawnPoint = objects->objectNamed("SpawnPoint");
-	x = ((String*)spawnPoint->objectForKey("x"))->intValue();
-	y = ((String*)spawnPoint->objectForKey("y"))->intValue();
-
-	mm = new MonsterManage(tmxMap, wayinfo, mSize, tSize, wScale, hScale);
+	mm = new MonsterManage(tmxMap, tm->wayinfo, tm->mSize, tm->tSize, tm->wScale, tm->hScale);
 	this->schedule(schedule_selector(HelloWorld::createMonster), 1.0f);
 	this->schedule(schedule_selector(HelloWorld::checkPosition), 0.1f);
 
     return true;
 }
 void HelloWorld::createMonster(float dt){
-	this->addChild(mm->createMonster(Point(x*wScale, y*hScale)),1);
+	this->addChild(mm->createMonster(Point(tm->xSpawn, tm->ySpawn)),1);
 }
 
 void HelloWorld::checkPosition(float dt) {

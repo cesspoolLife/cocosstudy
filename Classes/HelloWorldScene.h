@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include "MonsterManage.h"
+#include "TileMap.h"
 
 class HelloWorld : public cocos2d::LayerColor
 {
@@ -24,18 +25,13 @@ public:
 
 private:
 	MonsterManage* mm;
+	TileMap* tm;
 
 	cocos2d::TMXTiledMap* tmxMap;
-	cocos2d::TMXLayer* building;
-	cocos2d::TMXLayer* wayinfo;
 	cocos2d::Sprite* sprite ;
 
-	cocos2d::Size mSize;
-	cocos2d::Size tSize;
 	float wScale;
 	float hScale;
-	int x;
-	int y;
 };
 
 #endif // __HELLOWORLD_SCENE_H__
