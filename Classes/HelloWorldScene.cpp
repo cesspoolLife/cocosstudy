@@ -59,7 +59,7 @@ bool HelloWorld::init()
 
 	// 타워 리소스 로드
 	towerTexture = Tower::create("tower2.png",Rect(0,0,128,128));
-	
+	towerTexture->retain();
 	createPlayMenu();
 	
 	
@@ -135,7 +135,7 @@ void HelloWorld::menuCloseCallback(Object* pSender)
 
 void HelloWorld::createPlayMenu()
 {
-	MenuItemImage* buildButton = MenuItemImage::create("TowerMenu.png","TowerMenu.png",this,HelloWorld::buildingTower);
+	MenuItemImage* buildButton = MenuItemImage::create("TowerMenu.png","TowerMenu.png",this,menu_selector(HelloWorld::buildingTower));
 	buildButton->setScaleX(wScale);
 	buildButton->setScaleY(hScale);
 	playMenu = Menu::create(buildButton, NULL);
