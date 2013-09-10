@@ -27,9 +27,6 @@ private:
 	MonsterManage* mm;
 	TileMap* tm;
 
-	cocos2d::TMXTiledMap* tmxMap;
-	cocos2d::Sprite* sprite ;
-
 	float wScale;
 	float hScale;
 };
