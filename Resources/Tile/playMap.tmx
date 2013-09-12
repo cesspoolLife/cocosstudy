@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="31" height="21" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="tile" tilewidth="32" tileheight="32">
+  <image source="Tile/tile.png" width="256" height="256"/>
+  <tile id="33">
+   <properties>
+    <property name="way" value="YES"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Tile Layer 1" width="31" height="21">
+  <data encoding="base64" compression="zlib">
+   eJztVLsKwzAMdJshmBYylJDJZCpd2iHZ2g79/79qBBZcFckGDzGFHBidZfkhTrJzO2rDL2OAeQ/8mtl7EPNejUpjBB6ivS/jAf4JeBMtvfus7J0L3nBKrD0VH97bAn8V3F0TR+Ck5WDEWf4u2slYl5BxqCXWAerB/tlYJ31ydcpxKZ1TsHSVdfpvyPXrzf1qz/1+KbgL/wo6M8Ac64JrkuKxJny02HspoNYe+CjitP72io9RkvuWQE0/wFsRh72vaVyCkA9Zna9pjDmQjtb/Y+EdB4NztXTtgMscZL3sqIMvvisH4g==
+  </data>
+ </layer>
+ <layer name="way" width="31" height="21">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFSnTAyEANiDWQ7GagAxtmpx4QG2BxF63YSkh2MuBRR0s2OhiN79H4Ho1v6rBH43s0vmlpHzY2OqB3fI9UAACujSVj
+  </data>
+ </layer>
+ <layer name="dog" width="31" height="21">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo4C2gGOgHTAKRsEoGAWjYBSMArIBAEhsAAk=
+  </data>
+ </layer>
+ <layer name="cat" width="31" height="21">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjALqAY6BdsAoGAWjYBSMAqoCADjsAAk=
+  </data>
+ </layer>
+ <layer name="sheep" width="31" height="21">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMArIAxwD7YBRMApGAc0BAClsAAk=
+  </data>
+ </layer>
+ <layer name="chicken" width="31" height="21">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGwSggDDgG2gGjYEAAABnsAAk=
+  </data>
+ </layer>
+ <layer name="cow" width="31" height="21">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGwVAEHAPtgFEwIgAAHWwACQ==
+  </data>
+ </layer>
+ <layer name="butterfly" width="31" height="21">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMFwAx0A7YBSMglEw7AAALOwACQ==
+  </data>
+ </layer>
+ <layer name="horse" width="31" height="21">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUDGfAMdAOGAWjYBSMglEwpAEAPGwACQ==
+  </data>
+ </layer>
+ <layer name="wolf" width="31" height="21">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFIw1wDLQDRsEoGAWjYBSMglEwZAAAS+wACQ==
+  </data>
+ </layer>
+ <objectgroup name="Object" width="31" height="21">
+  <object name="SpawnPoint" x="496" y="336" width="1" height="1"/>
+ </objectgroup>
+</map>

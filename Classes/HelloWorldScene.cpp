@@ -30,12 +30,13 @@ bool HelloWorld::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Point origin = Director::getInstance()->getVisibleOrigin();
 
-	tm = new TileMap("Tile/tdMap.tmx");
+	tm = new TileMap("Tile/playMap.tmx");
 	tm->setScale(visibleSize);
 
 	this->addChild(tm->tmxMap,0,1);
 
 	mm = new MonsterManage(tmxMap, tm->wayinfo, tm->mSize, tm->tSize, tm->wScale, tm->hScale);
+	
 	this->schedule(schedule_selector(HelloWorld::createMonster), 1.0f);
 	this->schedule(schedule_selector(HelloWorld::checkPosition), 0.1f);
 

@@ -4,7 +4,7 @@ USING_NS_CC;
 
 Monster* Monster::monsterCreate(int type) {
 	int xIndex = 32*3*((int)(type%4));
-	int yIndex = 32*4*((int)(type/4));
+	int yIndex = 32*4*((int)(type/2));
 	Monster* monster = NULL;
 	Texture2D* texture = TextureCache::sharedTextureCache()->addImage("enemy.png");
 	CCLog(std::to_string(texture->getContentSize().width).c_str());

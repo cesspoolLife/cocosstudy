@@ -6,7 +6,6 @@
 class TileMap{
 public:
 	cocos2d::TMXTiledMap* tmxMap;
-	cocos2d::TMXLayer* building;
 	cocos2d::TMXLayer* wayinfo;
 
 	cocos2d::Size mSize;

@@ -4,9 +4,7 @@ USING_NS_CC;
 
 TileMap::TileMap(char* file){
 	this->tmxMap = TMXTiledMap::create(file);
-	this->building = this->tmxMap->layerNamed("Building");
 	this->wayinfo = this->tmxMap->layerNamed("way");
-	this->wayinfo->setVisible(false);
 	this->mSize = this->tmxMap->getMapSize();
 	this->tSize = this->tmxMap->getTileSize();
 	TMXObjectGroup* objects = tmxMap->objectGroupNamed("Object");

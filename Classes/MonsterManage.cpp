@@ -15,10 +15,14 @@ MonsterManage::MonsterManage(cocos2d::TMXTiledMap* tm, cocos2d::TMXLayer* wi, co
 
 Monster* MonsterManage::createMonster(Point p){
 	srand(time(NULL));
+//	CCLog(std::to_string(p.x).c_str());
+//	CCLog(std::to_string(p.y).c_str());
+	p = Point(640,360);
 	int type = rand()%4;
 	Monster* monster = Monster::monsterCreate(type);
 	this->monsters->addObject(monster);
 	monster->setPosition(p);
+	type = (rand()%4)+1;
 	monster->setDirection(1);
 	this->playMonster(monster);
 	return monster;
@@ -42,7 +46,7 @@ void MonsterManage::update(MonsterManage* mm) {
 		Point p = curMonster->getPosition();
 		int pX = p.x/(mm->wScale*mm->tSize.width); 
 		int pY = (mm->hScale*mm->mSize.height*mm->tSize.height-p.y)/(mm->hScale*mm->tSize.height);
-		int Gid;
+		int Gid = 1;
 		int rGid;
 		int lGid;
 		int rDirection;
@@ -50,41 +54,40 @@ void MonsterManage::update(MonsterManage* mm) {
 		int direction = curMonster->getDirection();
 		switch(direction){
 		case 1:
-			Gid = mm->wayinfo->getTileGIDAt(Point(pX-1,pY));
-			rGid = mm->wayinfo->getTileGIDAt(Point(pX,pY-2));
-			rDirection = 3;
-			lDirection = 4;
+			if (p.x-pX*mm->wScale*mm->tSize.width<16){
+				Gid = mm->wayinfo->getTileGIDAt(Point(pX-1,pY));
+				rGid = mm->wayinfo->getTileGIDAt(Point(pX,pY-1));
+				rDirection = 3;
+				lDirection = 4;
+			}
 			break;
 		case 2:
-			Gid = mm->wayinfo->getTileGIDAt(Point(pX+1,pY));
-			rGid = mm->wayinfo->getTileGIDAt(Point(pX,pY+2));
-			rDirection = 4;
-			lDirection = 3;
+			if (pX*mm->wScale*mm->tSize.width-p.x<5){
+				Gid = mm->wayinfo->getTileGIDAt(Point(pX+1,pY));
+				rGid = mm->wayinfo->getTileGIDAt(Point(pX,pY+1));
+				rDirection = 4;
+				lDirection = 3;
+			}
 			break;
 		case 3:
-			Gid = mm->wayinfo->getTileGIDAt(Point(pX,pY-1));
-			rGid = mm->wayinfo->getTileGIDAt(Point(pX+2,pY));
-			rDirection = 2;
-			lDirection = 1;
+			CCLog(std::to_string(p.y).c_str());
+			if ((mm->hScale*mm->mSize.height*mm->tSize.height-p.y)-(pY*mm->hScale*mm->tSize.height)<16){
+				Gid = mm->wayinfo->getTileGIDAt(Point(pX,pY-1));
+				rGid = mm->wayinfo->getTileGIDAt(Point(pX+1,pY));
+				rDirection = 2;
+				lDirection = 1;
+			}
 			break;
 		case 4:
-			Gid = mm->wayinfo->getTileGIDAt(Point(pX,pY+1));
-			rGid = mm->wayinfo->getTileGIDAt(Point(pX-2,pY));
-			rDirection = 1;
-			lDirection = 2;
+			if (p.y-pY*mm->hScale*mm->tSize.height<16){
+				Gid = mm->wayinfo->getTileGIDAt(Point(pX,pY+1));
+				rGid = mm->wayinfo->getTileGIDAt(Point(pX-2,pY));
+				rDirection = 1;
+				lDirection = 2;
+			}
 			break;
 		}
 		if (Gid){
-	/*		Dictionary* properties = mm->tmxMap->propertiesForGID(Gid);
-			if(properties) {
-				String* way = (String*)properties->objectForKey("is_way");
-				if (way&&(way->compare("YES")==0)) {
-				}
-				else {
-				}
-			}
-			else {
-			}*/
 		}
 		else {
 			if (rGid) {
